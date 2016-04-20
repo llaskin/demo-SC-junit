@@ -129,6 +129,7 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
                 new URL("http://" + authentication.getUsername() + ":" + authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub"),
                 capabilities);
         this.sessionId = (((RemoteWebDriver) driver).getSessionId()).toString();
+        printSessionId();
 
     }
 
@@ -156,6 +157,7 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
         driver.findElement(By.id("password")).sendKeys("BadPassword");
         driver.findElement(By.cssSelector("button.radius")).click();
         assertTrue(driver.findElement(By.tagName("html")).getText().contains("Secure Area"));
+
     }
 
     private void printSessionId() {
@@ -172,7 +174,7 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
      */
     @After
     public void tearDown() throws Exception {
-        printSessionId();
+//        printSessionId();
         driver.quit();
     }
 
