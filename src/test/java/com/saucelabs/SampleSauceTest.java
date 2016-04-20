@@ -1,40 +1,26 @@
 package com.saucelabs;
 
 import com.saucelabs.common.SauceOnDemandAuthentication;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.openqa.selenium.*;
-import org.openqa.selenium.remote.CapabilityType;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
-import com.saucelabs.junit.Parallelized;
+import com.saucelabs.common.SauceOnDemandSessionIdProvider;
 import com.saucelabs.junit.ConcurrentParameterized;
 import com.saucelabs.junit.SauceOnDemandTestWatcher;
-
-import java.net.URL;
-import java.util.LinkedList;
-
-import static org.junit.Assert.assertEquals;
-
-import com.saucelabs.common.SauceOnDemandAuthentication;
-import com.saucelabs.common.SauceOnDemandSessionIdProvider;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.URL;
 import java.util.LinkedList;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Demonstrates how to write a JUnit test that runs tests against Sauce Labs using multiple browsers in parallel.
@@ -80,6 +66,8 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
      * The {@link WebDriver} instance which is used to perform browser interactions with.
      */
     private WebDriver driver;
+
+    private static final Logger LOG = LoggerFactory.getLogger(SampleSauceTest.class);
 
     /**
      * Constructs a new instance of the test.  The constructor requires three string parameters, which represent the operating
@@ -149,22 +137,32 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
      * @throws Exception
      */
     @Test
-    public void sauce() throws Exception {
+    public void sauceTest1() throws Exception {
         driver.get("localhost:8888");
         driver.findElement(By.id("username")).sendKeys("tomsmith");
         driver.findElement(By.id("password")).sendKeys("SuperSecretPassword!");
         driver.findElement(By.cssSelector("button.radius")).click();
         System.out.println("Page header is: " + driver.getTitle());
-         if (!driver.findElement(By.tagName("html")).getText().contains("Secure Area")) {
-            System.out.println("verifyTextPresent failed");
-        }
+        assertTrue(driver.findElement(By.tagName("html")).getText().contains("Secure Area"));
+//        if (!driver.findElement(By.tagName("html")).getText().contains("Secure Area")) {
+//            System.out.println("verifyTextPresent failed");
+//        }
+//
+    }
+    @Test
+    public void sauceTest2() throws Exception {
+        driver.get("localhost:8888");
+        driver.findElement(By.id("username")).sendKeys("tomsmith");
+        driver.findElement(By.id("password")).sendKeys("BadPassword");
+        driver.findElement(By.cssSelector("button.radius")).click();
+        assertTrue(driver.findElement(By.tagName("html")).getText().contains("Secure Area"));
     }
 
     private void printSessionId() {
 
         String message = String.format("SauceOnDemandSessionID=%1$s job-name=%2$s",
                 (((RemoteWebDriver) driver).getSessionId()).toString(), "some job name");
-        System.out.println(message);
+        LOG.info(message);
     }
 
     /**
