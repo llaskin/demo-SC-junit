@@ -4,10 +4,7 @@ import com.saucelabs.common.SauceOnDemandAuthentication;
 import com.saucelabs.common.SauceOnDemandSessionIdProvider;
 import com.saucelabs.junit.ConcurrentParameterized;
 import com.saucelabs.junit.SauceOnDemandTestWatcher;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -92,18 +89,17 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
     public static LinkedList browsersStrings() {
         LinkedList browsers = new LinkedList();
         browsers.add(new String[]{"Windows 7", "45", "Chrome"});
-        //browsers.add(new String[]{"Windows 8.1", "11", "internet explorer"});
-        /**
-         * browsers.add(new String[]{"OS X 10.8", "6", "safari"});
-        browsers.add(new String[]{"Windows 7", "45", "Chrome"});
-        browsers.add(new String[]{"Windows 8", "10", "internet explorer"});
-        browsers.add(new String[]{"OS X 10.10", "8.0", "safari"});
-        browsers.add(new String[]{"Windows 7", "5.1", "safari"});
-        browsers.add(new String[]{"Windows XP", "7.0", "internet explorer"});
-        browsers.add(new String[]{"OS X 10.9", "7.0", "safari"});
-        browsers.add(new String[]{"Windows 8.1", "38.0", "firefox"});
-        browsers.add(new String[]{"Windows 8.1", "43.0", "Chrome"});
-        */
+//        browsers.add(new String[]{"Windows 8.1", "11", "internet explorer"});
+        browsers.add(new String[]{"OS X 10.8", "6", "safari"});
+//        browsers.add(new String[]{"Windows 7", "45", "Chrome"});
+//        browsers.add(new String[]{"Windows 8", "10", "internet explorer"});
+//        browsers.add(new String[]{"OS X 10.10", "8.0", "safari"});
+//        browsers.add(new String[]{"Windows 7", "5.1", "safari"});
+//        browsers.add(new String[]{"Windows XP", "7.0", "internet explorer"});
+//        browsers.add(new String[]{"OS X 10.9", "7.0", "safari"});
+//        browsers.add(new String[]{"Windows 8.1", "38.0", "firefox"});
+//        browsers.add(new String[]{"Windows 8.1", "43.0", "Chrome"});
+
         return browsers;
     }
 
@@ -124,7 +120,7 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
             capabilities.setCapability(CapabilityType.VERSION, version);
         }
         capabilities.setCapability(CapabilityType.PLATFORM, os);
-        capabilities.setCapability("name", "Sauce Connect Jenkins Java Junit");
+        capabilities.setCapability("nagit come", "Sauce Connect Jenkins Java Junit");
         this.driver = new RemoteWebDriver(
                 new URL("http://" + authentication.getUsername() + ":" + authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub"),
                 capabilities);
@@ -151,6 +147,7 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
 //
     }
     @Test
+    @Ignore
     public void sauceTest2() throws Exception {
         driver.get("localhost:8888");
         driver.findElement(By.id("username")).sendKeys("tomsmith");

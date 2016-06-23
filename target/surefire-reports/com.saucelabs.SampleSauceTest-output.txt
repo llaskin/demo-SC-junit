@@ -1,2 +1,0 @@
-Page header is: Tutorialspoint.com
-SauceOnDemandSessionID=2a25d391dd5c42f1a23e444024ea1d77 job-name=com.saucelabs.SampleSauceTest.sauce[0]
