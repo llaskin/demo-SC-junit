@@ -141,10 +141,6 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
         driver.findElement(By.cssSelector("button.radius")).click();
         System.out.println("Page header is: " + driver.getTitle());
         assertTrue(driver.findElement(By.tagName("html")).getText().contains("Secure Area"));
-//        if (!driver.findElement(By.tagName("html")).getText().contains("Secure Area")) {
-//            System.out.println("verifyTextPresent failed");
-//        }
-//
     }
     @Test
     @Ignore
