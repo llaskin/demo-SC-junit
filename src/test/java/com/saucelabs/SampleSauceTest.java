@@ -143,7 +143,6 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
         assertTrue(driver.findElement(By.tagName("html")).getText().contains("Secure Area"));
     }
     @Test
-    @Ignore //Ignoring this test for now
     public void sauceTest2() throws Exception {
         driver.get("localhost:8888");
         driver.findElement(By.id("username")).sendKeys("tomsmith");
