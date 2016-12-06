@@ -147,7 +147,7 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
     @Test
 //    @Ignore //Ignoring this test for now
     public void sauceTest2() throws Exception {
-        driver.get("localhost:8888");
+        driver.get("http://localhost:8888");
         driver.findElement(By.id("username")).sendKeys("tomsmith");
         driver.findElement(By.id("password")).sendKeys("BadPassword");
         driver.findElement(By.cssSelector("button.radius")).click();
