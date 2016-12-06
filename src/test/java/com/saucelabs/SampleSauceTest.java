@@ -88,16 +88,16 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
     @ConcurrentParameterized.Parameters
     public static LinkedList browsersStrings() {
         LinkedList browsers = new LinkedList();
-        browsers.add(new String[]{"Windows 7", "45", "Chrome"});
+        browsers.add(new String[]{"Windows 7", "latest", "Chrome"});
         browsers.add(new String[]{"Windows 8.1", "11", "internet explorer"});
-        browsers.add(new String[]{"Windows 8", "10", "internet explorer"});
+        //browsers.add(new String[]{"Windows 8", "10", "internet explorer"});
 //        browsers.add(new String[]{"OS X 10.8", "6", "safari"});
 //        browsers.add(new String[]{"Windows 7", "45", "Chrome"});
-//        browsers.add(new String[]{"OS X 10.10", "8.0", "safari"});
+          browsers.add(new String[]{"OS X 10.10", "8.0", "safari"});
 //        browsers.add(new String[]{"Windows 7", "5.1", "safari"});
 //        browsers.add(new String[]{"Windows XP", "7.0", "internet explorer"});
 //        browsers.add(new String[]{"OS X 10.9", "7.0", "safari"});
-//        browsers.add(new String[]{"Windows 8.1", "38.0", "firefox"});
+        browsers.add(new String[]{"Windows 8.1", "latest", "firefox"});
 //        browsers.add(new String[]{"Windows 8.1", "43.0", "Chrome"});
 
         return browsers;
@@ -145,7 +145,7 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
         assertTrue(driver.findElement(By.tagName("html")).getText().contains("Secure Area"));
     }
     @Test
-    @Ignore //Ignoring this test for now
+//    @Ignore //Ignoring this test for now
     public void sauceTest2() throws Exception {
         driver.get("localhost:8888");
         driver.findElement(By.id("username")).sendKeys("tomsmith");
