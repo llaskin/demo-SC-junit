@@ -113,14 +113,20 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
      */
     @Before
     public void setUp() throws Exception {
-
+        String parentName = System.getenv("TUNNEL_PARENT_ID");
+        
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability(CapabilityType.BROWSER_NAME, browser);
         if (version != null) {
             capabilities.setCapability(CapabilityType.VERSION, version);
         }
         capabilities.setCapability(CapabilityType.PLATFORM, os);
-        capabilities.setCapability("tunnelIdentifier", "TUNNELNAME");
+        
+        capabilities.setCapability("tunnelIdentifier", System.getenv("SAUCE_CONNECT_TUNNEL_NAME"));
+        if(parentName != ""){
+            capabilities.setCapability("parentTunnel", parentName);
+        }
+            
         capabilities.setCapability("build", "Sauce Connect Jenkins Java Junit");
         capabilities.setCapability("tags", "burgers");
         this.driver = new RemoteWebDriver(
