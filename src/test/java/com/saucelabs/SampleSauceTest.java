@@ -123,7 +123,7 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
         capabilities.setCapability(CapabilityType.PLATFORM, os);
         
         capabilities.setCapability("tunnelIdentifier", System.getenv("SAUCE_CONNECT_TUNNEL_NAME"));
-        if(parentName != ""){
+        if(parentName == null || parentName.isEmpty()){
             System.out.println("Tunnel is a shared tunnel, setting parentTunnel username");
             capabilities.setCapability("parentTunnel", parentName);
         }
