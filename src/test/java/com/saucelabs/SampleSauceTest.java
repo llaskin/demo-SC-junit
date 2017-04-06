@@ -124,7 +124,11 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
         
         capabilities.setCapability("tunnelIdentifier", System.getenv("SAUCE_CONNECT_TUNNEL_NAME"));
         if(parentName != ""){
+            System.out.println("Tunnel is a shared tunnel, setting parentTunnel username")
             capabilities.setCapability("parentTunnel", parentName);
+        }
+        else{
+            System.out.println("No parent username set, tunnel owned by specified user and accesskey")
         }
             
         capabilities.setCapability("build", "Sauce Connect Jenkins Java Junit");
