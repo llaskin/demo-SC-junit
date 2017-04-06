@@ -114,7 +114,8 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
     @Before
     public void setUp() throws Exception {
         String parentName = System.getenv("TUNNEL_PARENT_ID");
-        
+        System.out.println("Parent Tunnel: " + parentName);
+
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability(CapabilityType.BROWSER_NAME, browser);
         if (version != null) {
