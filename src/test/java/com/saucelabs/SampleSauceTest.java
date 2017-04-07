@@ -114,8 +114,6 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
     @Before
     public void setUp() throws Exception {
         String parentName = System.getenv("TUNNEL_PARENT_ID");
-        System.out.println("Parent Tunnel: " + parentName);
-
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability(CapabilityType.BROWSER_NAME, browser);
         if (version != null) {
@@ -125,12 +123,11 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
         
         capabilities.setCapability("tunnelIdentifier", System.getenv("SAUCE_CONNECT_TUNNEL_NAME"));
         if(parentName != null || !parentName.isEmpty()){
-            System.out.println("setting Parent Tunnel ID");
+            System.out.println("Subaccount with Shared Tunnel.  Setting Parent Tunnel ID");
             capabilities.setCapability("parentTunnel", parentName);
         }
         capabilities.setCapability("build", "Sauce Connect Jenkins Java Junit");
         capabilities.setCapability("tags", "burgers");
-        System.out.println(capabilities.toString());
         this.driver = new RemoteWebDriver(
                 new URL("http://" + authentication.getUsername() + ":" + authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub"),
                 capabilities);
@@ -153,7 +150,6 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
         assertTrue(driver.findElement(By.tagName("html")).getText().contains("Secure Area"));
     }
     @Test
-    @Ignore //Ignoring this test for now
     public void sauceTest2() throws Exception {
         driver.get("http://localhost:8888");
         driver.findElement(By.id("username")).sendKeys("tomsmith");
