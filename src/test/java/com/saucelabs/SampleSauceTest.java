@@ -114,14 +114,16 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
     @Before
     public void setUp() throws Exception {
         String parentName = System.getenv("TUNNEL_PARENT_ID");
+        String tunnelName = System.getenv("SAUCE_CONNECT_TUNNEL_NAME");
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability(CapabilityType.BROWSER_NAME, browser);
         if (version != null) {
             capabilities.setCapability(CapabilityType.VERSION, version);
         }
         capabilities.setCapability(CapabilityType.PLATFORM, os);
-        
-        capabilities.setCapability("tunnelIdentifier", System.getenv("SAUCE_CONNECT_TUNNEL_NAME"));
+        if(tunnelName != null || !tunnelName.isEmpty()) {
+            capabilities.setCapability("tunnelIdentifier", tunnelName);
+        }
         if(parentName != null || !parentName.isEmpty()){
             System.out.println("Subaccount with Shared Tunnel.  Setting Parent Tunnel ID");
             capabilities.setCapability("parentTunnel", parentName);
