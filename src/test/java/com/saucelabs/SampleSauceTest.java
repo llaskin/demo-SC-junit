@@ -125,12 +125,11 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
             capabilities.setCapability("tunnelIdentifier", tunnelName);
         }
         if(parentName != null || !parentName.isEmpty()){
-            System.out.println("Subaccount with Shared Tunnel.  Setting Parent Tunnel ID");
+//             System.out.println("Subaccount with Shared Tunnel.  Setting Parent Tunnel ID");
             capabilities.setCapability("parentTunnel", parentName);
         }
         capabilities.setCapability("build", "Sauce Connect Jenkins Java Junit");
         capabilities.setCapability("tags", "burgers");
-        capabilities.setCapability("recordLogs", "false");
         this.driver = new RemoteWebDriver(
                 new URL("http://" + authentication.getUsername() + ":" + authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub"),
                 capabilities);
