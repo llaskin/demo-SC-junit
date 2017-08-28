@@ -130,6 +130,7 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
         }
         capabilities.setCapability("build", "Sauce Connect Jenkins Java Junit");
         capabilities.setCapability("tags", "burgers");
+        capabilities.setCapability("extendedDebugging" "true");
         this.driver = new RemoteWebDriver(
                 new URL("http://" + authentication.getUsername() + ":" + authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub"),
                 capabilities);
