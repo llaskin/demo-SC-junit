@@ -123,7 +123,7 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
 //             System.out.println("Subaccount with Shared Tunnel.  Setting Parent Tunnel ID");
             capabilities.setCapability("parentTunnel", parentName);
         }
-        capabilities.setCapability("build", process.env.SAUCE_BUILD_NAME);
+        capabilities.setCapability("build", System.getenv("SAUCE_BUILD_NAME"));
         capabilities.setCapability("tags", "burgers");
         capabilities.setCapability("extendedDebugging", "true");
         this.driver = new RemoteWebDriver(
