@@ -90,14 +90,9 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
         LinkedList browsers = new LinkedList();
         browsers.add(new String[]{"Windows 7", "latest", "Chrome"});
         browsers.add(new String[]{"Windows 8.1", "11", "internet explorer"});
-        //browsers.add(new String[]{"Windows 8", "10", "internet explorer"});
-//        browsers.add(new String[]{"OS X 10.8", "6", "safari"});
-//        browsers.add(new String[]{"Windows 7", "45", "Chrome"});
+        browsers.add(new String[]{"Windows 8", "10", "internet explorer"});
           browsers.add(new String[]{"OS X 10.10", "8.0", "safari"});
-//        browsers.add(new String[]{"Windows 7", "5.1", "safari"});
-//        browsers.add(new String[]{"Windows XP", "7.0", "internet explorer"});
-//        browsers.add(new String[]{"OS X 10.9", "7.0", "safari"});
-        browsers.add(new String[]{"Windows 8.1", "latest", "firefox"});
+        browsers.add(new String[]{"Windows 10", "latest", "edge"});
 //        browsers.add(new String[]{"Windows 8.1", "43.0", "Chrome"});
 
         return browsers;
@@ -128,7 +123,7 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
 //             System.out.println("Subaccount with Shared Tunnel.  Setting Parent Tunnel ID");
             capabilities.setCapability("parentTunnel", parentName);
         }
-        capabilities.setCapability("build", "Sauce Connect Jenkins Java Junit");
+        capabilities.setCapability("build", "Sauce Connect TunnelTest Java Junit");
         capabilities.setCapability("tags", "burgers");
         capabilities.setCapability("extendedDebugging", "true");
         this.driver = new RemoteWebDriver(
