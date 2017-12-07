@@ -91,7 +91,7 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
         browsers.add(new String[]{"Windows 7", "latest", "Chrome"});
         browsers.add(new String[]{"Windows 8.1", "11", "internet explorer"});
         browsers.add(new String[]{"Windows 8", "10", "internet explorer"});
-          browsers.add(new String[]{"OS X 10.10", "8.0", "safari"});
+        browsers.add(new String[]{"OS X 10.10", "8.0", "safari"});
         browsers.add(new String[]{"Windows 10", "latest", "edge"});
 //        browsers.add(new String[]{"Windows 8.1", "43.0", "Chrome"});
 
@@ -139,7 +139,7 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
      * @throws Exception
      */
     @Test
-    public void sauceTest1() throws Exception {
+    public void sauceLoginTest() throws Exception {
         driver.get("http://localhost:80");
         driver.findElement(By.id("username")).sendKeys("tomsmith");
         driver.findElement(By.id("password")).sendKeys("SuperSecretPassword!");
@@ -148,7 +148,17 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
         assertTrue(driver.findElement(By.tagName("html")).getText().contains("Secure Area"));
     }
     @Test
-    public void sauceTest2() throws Exception {
+    public void sauceInvalidLoginTest() throws Exception {
+        driver.get("http://localhost:80");
+        driver.findElement(By.id("username")).sendKeys("tomsmith");
+        driver.findElement(By.id("password")).sendKeys("BadPassword");
+        driver.findElement(By.cssSelector("button.radius")).click();
+        assertTrue(driver.findElement(By.tagName("html")).getText().contains("Secure Area"));
+
+    }
+
+    @Test
+    public void sauceTest3() throws Exception {
         driver.get("http://localhost:80");
         driver.findElement(By.id("username")).sendKeys("tomsmith");
         driver.findElement(By.id("password")).sendKeys("BadPassword");
