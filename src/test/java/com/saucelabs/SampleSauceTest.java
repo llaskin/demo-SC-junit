@@ -142,7 +142,7 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
     public void sauceTest1() throws Exception {
         driver.get("http://localhost:80");
         driver.findElement(By.id("username")).sendKeys("tomsmith");
-        driver.findElement(By.id("password")).sendKeys("SuperSecretPassword!");
+        driver.findElement(By.id("password")).sendKeys("SuperSecretPas  sword!");
         driver.findElement(By.cssSelector("button.radius")).click();
         System.out.println("Page header is: " + driver.getTitle());
         assertTrue(driver.findElement(By.tagName("html")).getText().contains("Secure Area"));
