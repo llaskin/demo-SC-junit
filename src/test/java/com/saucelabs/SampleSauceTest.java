@@ -109,7 +109,7 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
     @Before
     public void setUp() throws Exception {
 		String parentName = "";
-        String tunnelName = "TUNNELNAME";
+        String tunnelName = "TunnelVision";
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability(CapabilityType.BROWSER_NAME, browser);
         if (version != null) {
